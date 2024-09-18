@@ -1,0 +1,167 @@
+/* コンテナのスタイル */
+.container {
+    position: static; /* または relative */
+    padding-top: 800px; /* ここで余白を増やして下に移動 */
+}
+
+/* タスクリストのスタイル */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 200px 0 100px 0; /* 上部の余白を増やしてタスクを下げる */
+}
+
+/* 各タスクのスタイル */
+li.task-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 15px;
+    font-size: 1.2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 軽い影を追加 */
+    transition: background-color 0.2s ease;
+}
+
+/* タスクのホバー時 */
+li.task-item:hover {
+    background-color: #f1f1f1; /* ホバー時の背景色 */
+}
+
+/* タスクの期日を左に表示 */
+.task-due-date {
+    flex: 0 0 160px; /* 固定幅のスペースを確保 */
+    font-size: 1em;
+    color: #555;
+    text-align: left;
+}
+
+/* タスク内容を右側に配置 */
+.task-content {
+    flex: 1;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+}
+
+/* タスク内容の強調スタイル */
+.task-content strong {
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* タスクの備考欄のスタイル */
+.task-content p.note {
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 5px;
+}
+
+/* 完了したタスク */
+li.task-item.completed {
+    background-color: #dbdbdb;
+    color: #888;
+}
+
+/* 完了したタスクのタイトル、日付、備考に線を引く */
+li.task-item.completed .task-due-date,
+li.task-item.completed .task-content strong,
+li.task-item.completed .task-content p.note {
+    text-decoration: line-through;
+}
+
+/* 完了の文字には線を引かない */
+li.task-item.completed .task-content .completed-status {
+    color: red;
+    text-decoration: none;
+}
+
+/* ボタンのスタイル */
+button {
+    font-size: 12px;
+    padding: 5px 10px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e0e0e0;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+button.delete-button {
+    background-color: red;
+    color: white;
+}
+
+button.delete-button:hover {
+    background-color: darkred;
+}
+
+/* タスク追加ボタンのスタイル */
+.add-task-button {
+    position: fixed;
+    top: 30px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #7b05b2;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    text-decoration: none;
+}
+
+.add-task-button:hover {
+    background-color: #45a049;
+}
+
+/* 編集ボタンのスタイル */
+a.edit-button {
+    background-color: #1E90FF;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+a.edit-button:hover {
+    background-color: #1C86EE;
+}
+
+/* 全体の背景色と幅設定 */
+body {
+    background-color: #ccc;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* タイトルのスタイル */
+h1 {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 50px;
+    font-weight: normal;
+    margin: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-decoration: underline;
+    text-decoration-color: red;
+    text-decoration-thickness: 2px;
+}
+

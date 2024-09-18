@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: your_project_name       # プロジェクト名
+    env: python
+    buildCommand: ""              # ビルド時に実行するコマンド
+    startCommand: "gunicorn your_project_name.wsgi:application --bind 0.0.0.0:$PORT"
+    envVars:                      # 環境変数の設定
+      - key: SECRET_KEY
+        value: your_secret_key
+      - key: DATABASE_URL
+        fromDatabase: your_database_name

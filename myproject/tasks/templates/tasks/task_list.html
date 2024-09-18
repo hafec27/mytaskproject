@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tasks/css/styles.css' %}">
+    
+    <script>
+        function confirmDelete(event) {
+            if (!confirm("このタスクを削除してもよろしいですか？")) {
+                event.preventDefault(); // 削除をキャンセル
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>ToDo List△</h1>
+    <ul>
+        {% for task in tasks %}
+            <li class="task-item {% if task.completed %}completed{% endif %}">
+                <!-- 左側に期日を表示 -->
+                <!-- タスクの期日を左に表示 -->
+<div class="task-due-date">
+    {% if task.due_date %}
+        <strong>{{ task.due_date }}</strong>
+    {% endif %}
+</div>
+                <!-- タスク情報 -->
+                <div class="task-content">
+                    <strong>{{ task.title }}</strong>
+                    {% if task.completed %}
+                    <span class="completed-status">完了</span>
+                    {% endif %}
+                    <!-- 備考欄が存在する場合のみ表示 -->
+                    {% if task.note %}
+                    <p class="note">{{ task.note }}</p>
+                    {% endif %}
+                </div>
+                <div class="task-actions">
+                    <!-- 状態切り替えボタン -->
+                    <form method="POST" action="{% url 'toggle_task_status' task.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit">
+                            {% if task.completed %}未完了に戻す{% else %}完了{% endif %}
+                        </button>
+                    </form>
+
+                    <!-- 編集ボタン -->
+                    <a href="{% url 'edit_task' task.id %}">編集</a>
+
+                    <!-- 削除ボタン -->
+                    <form method="POST" action="{% url 'delete_task' task.id %}" style="display:inline;" onsubmit="confirmDelete(event);">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-button">削除</button>
+                    </form>
+                </div>
+            </li>
+        {% empty %}
+            <li>タスクはありません。</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_task' %}" class="add-task-button">+</a>
+</body>
+</html>

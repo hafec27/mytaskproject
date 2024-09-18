@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>タスクを追加</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tasks/css/add_task.css' %}">
+</head>
+<body>
+    <h1>新しいタスクを追加</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <!-- タスク名の入力 -->
+        <label for="title">タスク名:</label><br>
+        <input type="text" name="title" placeholder="タスク名" required><br><br>
+
+        <!-- 備考欄の入力 -->
+        <label for="note">備考:</label><br>
+        <textarea name="note" placeholder="備考欄"></textarea><br><br>
+
+        <!-- 期日の入力 -->
+        <label for="due_date">期日:</label><br>
+        <input type="date" name="due_date"><br><br>
+
+        <!-- 追加ボタン -->
+        <button type="submit">追加</button>
+    </form>
+
+    <!-- 戻るリンク -->
+    <a href="{% url 'task_list' %}">戻る</a>
+</body>
+</html>
